@@ -1,0 +1,21 @@
+# Virtual Environment
+**.venv/
+.venv/
+venv/
+env/
+.env/
+*.pyc
+
+# Specific files
+Project3/airplane
+Project3/car
+Project3/motorbike
+Project3/vehicles_dataset.npz
+Project3/DataProcessor.py
+__pycache__/
+Assignment2-ANN/
+AIT-204-NLP/results/
+AIT-204-NLP/*.md
+AIT-204-NLP/sentiment_model_7point/
+.git-old
+
