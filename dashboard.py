@@ -10,6 +10,7 @@ from utils import check_app_ready
 
 ROOT = Path(__file__).parent
 PROJECTS = [f"Project{i}" for i in range(1, 11)]
+# PROJECTS.append("AIT-204-NLP")
 
 BASE_PORT = 8601  # avoid clashing with the dashboard's own port
 
@@ -19,10 +20,6 @@ try:
 except Exception:
     APP_URLS = {}
 CLOUD_MODE = bool(APP_URLS)
-
-# Only add AIT-204-NLP in local mode (too large for cloud)
-if not CLOUD_MODE:
-    PROJECTS.append("AIT-204-NLP")
 
 if "processes" not in st.session_state:
     st.session_state.processes = {}
@@ -109,26 +106,11 @@ else:
                     time.sleep(2)  # Give it a moment to start
                     
                     if st.session_state.processes[name].poll() is not None:
-                        # Process failed to start - clean up
-                        status_msg.error(f"{name} failed to start. Cleaning up and retrying...")
-                        
-                        # Remove failed process from session state
-                        if name in st.session_state.processes:
-                            del st.session_state.processes[name]
-                        
-                        # Give user option to retry
-                        status_msg.warning(f"⚠️ {name} failed to start. Check the terminal for errors, then click the button again to retry.")
-                        st.stop()  # Stop execution to allow retry
+                        status_msg.error(f"{name} failed to start")
+                        st.stop()  # Stop execution if the process failed
                         
                     # Wait for app to be ready
                     ready = check_app_ready(url)
-                    
-                    # Double-check process is still running after ready check
-                    if st.session_state.processes[name].poll() is not None:
-                        status_msg.error(f"⚠️ {name} started but then crashed. Check the terminal for errors.")
-                        if name in st.session_state.processes:
-                            del st.session_state.processes[name]
-                        st.stop()
                     
                     # Show appropriate status message
                     if ready:
