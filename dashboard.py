@@ -10,7 +10,11 @@ from utils import check_app_ready
 
 ROOT = Path(__file__).parent
 PROJECTS = [f"Project{i}" for i in range(1, 11)]
-PROJECTS.append("AIT-204-NLP")
+
+# Only add AIT-204-NLP in local mode (too large for cloud)
+import os
+if os.getenv("STREAMLIT_SHARING") is None:  # Local development
+    PROJECTS.append("AIT-204-NLP")
 
 BASE_PORT = 8601  # avoid clashing with the dashboard's own port
 
