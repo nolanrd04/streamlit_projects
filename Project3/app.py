@@ -9,7 +9,8 @@ import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 import os
 
-BASE_DIR = os.path.dirname(__file__)
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+model_path = os.path.join(BASE_DIR, "vehicle_classifier_model.keras")
 accuracy_plot = os.path.join(BASE_DIR, "accuracy_plot.png")
 loss_plot = os.path.join(BASE_DIR, "loss_plot.png")
 
@@ -21,7 +22,7 @@ st.markdown("The CNN model is trained to classify these vehicles.")
 # Load the trained model
 @st.cache_resource
 def load_model():
-    return tf.keras.models.load_model("vehicle_classifier_model.keras")
+    return tf.keras.models.load_model(model_path)
 
 model = load_model()
 
