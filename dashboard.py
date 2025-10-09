@@ -11,11 +11,6 @@ from utils import check_app_ready
 ROOT = Path(__file__).parent
 PROJECTS = [f"Project{i}" for i in range(1, 11)]
 
-# Only add AIT-204-NLP in local mode (too large for cloud)
-import os
-if os.getenv("STREAMLIT_SHARING") is None:  # Local development
-    PROJECTS.append("AIT-204-NLP")
-
 BASE_PORT = 8601  # avoid clashing with the dashboard's own port
 
 # Cloud mode: if APP_URLS provided in secrets, we link to deployed apps instead of spawning processes
@@ -24,6 +19,10 @@ try:
 except Exception:
     APP_URLS = {}
 CLOUD_MODE = bool(APP_URLS)
+
+# Only add AIT-204-NLP in local mode (too large for cloud)
+if not CLOUD_MODE:
+    PROJECTS.append("AIT-204-NLP")
 
 if "processes" not in st.session_state:
     st.session_state.processes = {}
@@ -123,6 +122,13 @@ else:
                         
                     # Wait for app to be ready
                     ready = check_app_ready(url)
+                    
+                    # Double-check process is still running after ready check
+                    if st.session_state.processes[name].poll() is not None:
+                        status_msg.error(f"⚠️ {name} started but then crashed. Check the terminal for errors.")
+                        if name in st.session_state.processes:
+                            del st.session_state.processes[name]
+                        st.stop()
                     
                     # Show appropriate status message
                     if ready:
