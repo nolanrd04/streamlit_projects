@@ -106,8 +106,16 @@ else:
                     time.sleep(2)  # Give it a moment to start
                     
                     if st.session_state.processes[name].poll() is not None:
-                        status_msg.error(f"{name} failed to start")
-                        st.stop()  # Stop execution if the process failed
+                        # Process failed to start - clean up
+                        status_msg.error(f"{name} failed to start. Cleaning up and retrying...")
+                        
+                        # Remove failed process from session state
+                        if name in st.session_state.processes:
+                            del st.session_state.processes[name]
+                        
+                        # Give user option to retry
+                        status_msg.warning(f"⚠️ {name} failed to start. Check the terminal for errors, then click the button again to retry.")
+                        st.stop()  # Stop execution to allow retry
                         
                     # Wait for app to be ready
                     ready = check_app_ready(url)
