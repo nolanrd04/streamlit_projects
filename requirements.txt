@@ -1,12 +1,6 @@
-accelerate
-datasets
-matplotlib
-numpy
-pandas
-Pillow
-plotly
-scikit-learn
 streamlit
 tensorflow
-torch
-transformers
+numpy
+Pillow
+matplotlib
+scikit-learn
