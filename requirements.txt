@@ -1,6 +1,14 @@
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch
+torchvision
+accelerate
+datasets
+matplotlib
+numpy
+pandas
+Pillow
+plotly
+scikit-learn
 streamlit
 tensorflow
-numpy
-Pillow
-matplotlib
-scikit-learn
+transformers
