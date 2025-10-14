@@ -32,6 +32,26 @@ st.caption("Local mode: launch standalone apps on their own ports.")
 python_cmd = sys.executable or "python3"
 st.write(f"WARNING: Projects take a long time to load. If you run into a connection issue, wait a little longer and try again.")
 
+# Add a button to stop all running processes
+if st.button("🛑 Stop All Running Apps", type="secondary"):
+    killed_count = 0
+    for name, proc in list(st.session_state.processes.items()):
+        if proc and proc.poll() is None:  # Process is still running
+            proc.terminate()
+            try:
+                proc.wait(timeout=5)  # Wait up to 5 seconds for graceful termination
+            except:
+                proc.kill()  # Force kill if it doesn't terminate
+            killed_count += 1
+    st.session_state.processes.clear()
+    if killed_count > 0:
+        st.success(f"Stopped {killed_count} running app(s)")
+    else:
+        st.info("No running apps to stop")
+    st.rerun()
+
+st.divider()
+
 for idx, name in enumerate(PROJECTS, start=0):
     port = BASE_PORT + idx
     app_path = ROOT / name / "app.py"
