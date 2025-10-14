@@ -10,7 +10,7 @@ from utils import check_app_ready
 
 ROOT = Path(__file__).parent
 PROJECTS = [f"Project{i}" for i in range(1, 11)]
-PROJECTS.append("AIT-204-NLP")
+# PROJECTS.append("AIT-204-NLP")
 
 BASE_PORT = 8601  # avoid clashing with the dashboard's own port
 
