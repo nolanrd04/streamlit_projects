@@ -65,9 +65,6 @@ for idx, name in enumerate(PROJECTS, start=0):
                 # Use the root directory as working directory
                 work_dir = str(ROOT)
                     
-                print(cmd)
-                st.write(cmd)
-                    
                 st.session_state.processes[name] = subprocess.Popen(
                     cmd,
                     cwd=work_dir,
