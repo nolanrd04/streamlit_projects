@@ -1,0 +1,188 @@
+[
+  {
+    "text": "Apple Inc. released iPhone 15 on September 15 for $799",
+    "tokens": [
+      "Apple",
+      "Inc.",
+      "released",
+      "iPhone",
+      "15",
+      "on",
+      "September",
+      "15",
+      "for",
+      "$799"
+    ],
+    "ner_tags": [
+      "B-COMPANY",
+      "I-COMPANY",
+      "O",
+      "B-PRODUCT",
+      "I-PRODUCT",
+      "O",
+      "B-DATE",
+      "I-DATE",
+      "O",
+      "O"
+    ],
+    "timestamp": "2025-10-14T10:36:14.235073"
+  },
+  {
+    "text": "Microsoft CEO Satya Nadella announced Windows 12",
+    "tokens": [
+      "Microsoft",
+      "CEO",
+      "Satya",
+      "Nadella",
+      "announced",
+      "Windows",
+      "12"
+    ],
+    "ner_tags": [
+      "B-COMPANY",
+      "O",
+      "B-PERSON",
+      "I-PERSON",
+      "O",
+      "B-PRODUCT",
+      "I-PRODUCT"
+    ],
+    "timestamp": "2025-10-14T10:36:14.235829"
+  },
+  {
+    "text": "Tesla stock rose to $250 in New York",
+    "tokens": [
+      "Tesla",
+      "stock",
+      "rose",
+      "to",
+      "$250",
+      "in",
+      "New",
+      "York"
+    ],
+    "ner_tags": [
+      "B-COMPANY",
+      "O",
+      "O",
+      "O",
+      "B-MONEY",
+      "O",
+      "B-LOCATION",
+      "I-LOCATION"
+    ],
+    "timestamp": "2025-10-14T10:36:14.236406"
+  },
+  {
+    "text": "Google acquired DeepMind for $500 million in London",
+    "tokens": [
+      "Google",
+      "acquired",
+      "DeepMind",
+      "for",
+      "$500",
+      "million",
+      "in",
+      "London"
+    ],
+    "ner_tags": [
+      "B-COMPANY",
+      "O",
+      "B-COMPANY",
+      "O",
+      "B-MONEY",
+      "I-MONEY",
+      "O",
+      "B-LOCATION"
+    ],
+    "timestamp": "2025-10-14T10:36:14.236933"
+  },
+  {
+    "text": "Amazon launched Prime Video in California",
+    "tokens": [
+      "Amazon",
+      "launched",
+      "Prime",
+      "Video",
+      "in",
+      "California"
+    ],
+    "ner_tags": [
+      "B-COMPANY",
+      "O",
+      "B-PRODUCT",
+      "I-PRODUCT",
+      "O",
+      "B-LOCATION"
+    ],
+    "timestamp": "2025-10-14T10:36:14.237651"
+  },
+  {
+    "text": "Samsung released Galaxy S24 on January 15",
+    "tokens": [
+      "Samsung",
+      "released",
+      "Galaxy",
+      "S24",
+      "on",
+      "January",
+      "15"
+    ],
+    "ner_tags": [
+      "B-COMPANY",
+      "O",
+      "B-PRODUCT",
+      "I-PRODUCT",
+      "O",
+      "B-DATE",
+      "I-DATE"
+    ],
+    "timestamp": "2025-10-14T10:36:14.238135"
+  },
+  {
+    "text": "Meta CEO Mark Zuckerberg introduced Threads",
+    "tokens": [
+      "Meta",
+      "CEO",
+      "Mark",
+      "Zuckerberg",
+      "introduced",
+      "Threads"
+    ],
+    "ner_tags": [
+      "B-COMPANY",
+      "O",
+      "B-PERSON",
+      "I-PERSON",
+      "O",
+      "B-PRODUCT"
+    ],
+    "timestamp": "2025-10-14T10:36:14.238698"
+  },
+  {
+    "text": "IBM announced Watson AI at CES in Las Vegas",
+    "tokens": [
+      "IBM",
+      "announced",
+      "Watson",
+      "AI",
+      "at",
+      "CES",
+      "in",
+      "Las",
+      "Vegas"
+    ],
+    "ner_tags": [
+      "B-COMPANY",
+      "O",
+      "B-PRODUCT",
+      "I-PRODUCT",
+      "O",
+      "O",
+      "O",
+      "O",
+      "I-LOCATION"
+    ],
+    "timestamp": "2025-10-14T10:36:14.239277"
+  }
+]

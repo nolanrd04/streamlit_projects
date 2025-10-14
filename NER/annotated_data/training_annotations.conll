@@ -1,0 +1,69 @@
+Apple	B-COMPANY
+Inc.	I-COMPANY
+released	O
+iPhone	B-PRODUCT
+15	I-PRODUCT
+on	O
+September	B-DATE
+15	I-DATE
+for	O
+$799	O
+
+Microsoft	B-COMPANY
+CEO	O
+Satya	B-PERSON
+Nadella	I-PERSON
+announced	O
+Windows	B-PRODUCT
+12	I-PRODUCT
+
+Tesla	B-COMPANY
+stock	O
+rose	O
+to	O
+$250	B-MONEY
+in	O
+New	B-LOCATION
+York	I-LOCATION
+
+Google	B-COMPANY
+acquired	O
+DeepMind	B-COMPANY
+for	O
+$500	B-MONEY
+million	I-MONEY
+in	O
+London	B-LOCATION
+
+Amazon	B-COMPANY
+launched	O
+Prime	B-PRODUCT
+Video	I-PRODUCT
+in	O
+California	B-LOCATION
+
+Samsung	B-COMPANY
+released	O
+Galaxy	B-PRODUCT
+S24	I-PRODUCT
+on	O
+January	B-DATE
+15	I-DATE
+
+Meta	B-COMPANY
+CEO	O
+Mark	B-PERSON
+Zuckerberg	I-PERSON
+introduced	O
+Threads	B-PRODUCT
+
+IBM	B-COMPANY
+announced	O
+Watson	B-PRODUCT
+AI	I-PRODUCT
+at	O
+CES	O
+in	O
+Las	O
+Vegas	I-LOCATION
+

@@ -1,0 +1,79 @@
+{
+  "token_metrics": {
+    "token_accuracy": 0.6,
+    "correct_tokens": 9,
+    "total_tokens": 15
+  },
+  "entity_metrics": {
+    "precision": 0.2857142857142857,
+    "recall": 0.5,
+    "f1_score": 0.36363636363636365,
+    "true_positives": 2,
+    "false_positives": 5,
+    "false_negatives": 2
+  },
+  "per_entity_metrics": {
+    "COMPANY": {
+      "precision": 0.5,
+      "recall": 1.0,
+      "f1_score": 0.6666666666666666,
+      "support": 2
+    },
+    "MONEY": {
+      "precision": 0,
+      "recall": 0,
+      "f1_score": 0,
+      "support": 0
+    },
+    "PERSON": {
+      "precision": 0,
+      "recall": 0.0,
+      "f1_score": 0,
+      "support": 1
+    },
+    "PRODUCT": {
+      "precision": 1.0,
+      "recall": 0.5,
+      "f1_score": 0.6666666666666666,
+      "support": 2
+    },
+    "LOCATION": {
+      "precision": 0.0,
+      "recall": 0,
+      "f1_score": 0,
+      "support": 0
+    },
+    "DATE": {
+      "precision": 0,
+      "recall": 0,
+      "f1_score": 0,
+      "support": 0
+    }
+  },
+  "confusion_matrix": {
+    "B-COMPANY": {
+      "B-COMPANY": 2
+    },
+    "O": {
+      "O": 5,
+      "B-COMPANY": 1,
+      "B-LOCATION": 1
+    },
+    "B-PERSON": {
+      "B-COMPANY": 1
+    },
+    "I-PERSON": {
+      "O": 1
+    },
+    "B-PRODUCT": {
+      "B-LOCATION": 1,
+      "B-PRODUCT": 1
+    },
+    "I-PRODUCT": {
+      "I-PRODUCT": 1
+    },
+    "I-LOCATION": {
+      "B-LOCATION": 1
+    }
+  }
+}
