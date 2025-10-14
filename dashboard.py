@@ -15,11 +15,6 @@ PROJECTS = [f"Project{i}" for i in range(1, 11)]
 BASE_PORT = 8601  # avoid clashing with the dashboard's own port
 
 # Cloud mode: if APP_URLS provided in secrets, we link to deployed apps instead of spawning processes
-try:
-    APP_URLS = dict(st.secrets.get("APP_URLS", {}))
-except Exception:
-    APP_URLS = {}
-CLOUD_MODE = bool(APP_URLS)
 
 if "processes" not in st.session_state:
     st.session_state.processes = {}
