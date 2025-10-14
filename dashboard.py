@@ -86,6 +86,8 @@ else:
                     # Use the root directory as working directory
                     work_dir = str(ROOT)
                     
+                    print(cmd)
+                    
                     st.session_state.processes[name] = subprocess.Popen(
                         cmd,
                         cwd=work_dir,
