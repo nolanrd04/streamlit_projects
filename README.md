@@ -41,49 +41,6 @@ lsof -i :8601
 kill -9 <PID>
 ```
 
-## Deploying to Streamlit Cloud
-
-There are two recommended deployment patterns:
-
-- Single dashboard app that LINKS to other deployed apps (recommended)
-- Ten separate apps deployed individually (one per `ProjectX` folder)
-
-The provided `dashboard.py` automatically detects cloud mode via `st.secrets["APP_URLS"]`. When present, it shows link buttons to your deployed apps instead of trying to spawn subprocesses (which is not supported on Streamlit Cloud).
-
-### Configure secrets for the dashboard
-
-In Streamlit Cloud, set Secrets for the dashboard app like this:
-
-```toml
-[APP_URLS]
-Project1 = "https://<your-user>-<your-repo>-project1.streamlit.app"
-Project2 = "https://<your-user>-<your-repo>-project2.streamlit.app"
-Project3 = "https://<your-user>-<your-repo>-project3.streamlit.app"
-Project4 = "https://<your-user>-<your-repo>-project4.streamlit.app"
-Project5 = "https://<your-user>-<your-repo>-project5.streamlit.app"
-Project6 = "https://<your-user>-<your-repo>-project6.streamlit.app"
-Project7 = "https://<your-user>-<your-repo>-project7.streamlit.app"
-Project8 = "https://<your-user>-<your-repo>-project8.streamlit.app"
-Project9 = "https://<your-user>-<your-repo>-project9.streamlit.app"
-Project10 = "https://<your-user>-<your-repo>-project10.streamlit.app"
-```
-
-See `secrets.example.toml` for a ready-to-copy template.
-
-### How to deploy
-
-1. Push this repo to GitHub.
-2. In Streamlit Cloud, deploy apps:
-   - Dashboard: set entry point to `dashboard.py` at repo root.
-   - Each ProjectX app: set working dir to `ProjectX/` and entry point to `app.py`.
-3. After deploying each ProjectX app, copy its URL into the dashboard secrets under `[APP_URLS]`.
-
-### Notes
-
-- Do NOT rely on spawning subprocesses in the cloud; use links.
-- Keep `requirements.txt` at repo root so all apps pick up dependencies.
-- If a project needs extra packages, add them to the root `requirements.txt` (shared by all apps) or split repos per app.
-
 ## Structure
 
 ```
