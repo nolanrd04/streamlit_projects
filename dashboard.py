@@ -27,101 +27,80 @@ if "processes" not in st.session_state:
 st.set_page_config(page_title="Apps Dashboard", page_icon="🗂️", layout="centered")
 st.title("Apps Dashboard")
 
-if CLOUD_MODE:
-    st.caption("Cloud mode: open deployed apps via links.")
-    for name in PROJECTS:
-        url = APP_URLS.get(name)
-        col1, col2 = st.columns([1, 2])
-        with col1:
-            if url:
-                if hasattr(st, "link_button"):
-                    st.link_button(name, url)
-                else:
-                    st.markdown(f"[{name}]({url})")
-            else:
-                st.button(name, disabled=True)
-        with col2:
-            if url:
-                st.write(url)
-            else:
-                st.warning("URL not configured in secrets.")
-    st.divider()
-    st.caption("Configure [APP_URLS] in Streamlit secrets to enable links.")
-else:
-    st.caption("Local mode: launch standalone apps on their own ports.")
+st.caption("Local mode: launch standalone apps on their own ports.")
 
-    python_cmd = sys.executable or "python3"
-    st.write(f"WARNING: Projects take a long time to load. If you run into a connection issue, wait a little longer and try again.")
+python_cmd = sys.executable or "python3"
+st.write(f"WARNING: Projects take a long time to load. If you run into a connection issue, wait a little longer and try again.")
 
-    for idx, name in enumerate(PROJECTS, start=0):
-        port = BASE_PORT + idx
-        app_path = ROOT / name / "app.py"
+for idx, name in enumerate(PROJECTS, start=0):
+    port = BASE_PORT + idx
+    app_path = ROOT / name / "app.py"
 
-        if not app_path.exists():
-            continue
+    if not app_path.exists():
+        continue
 
-        col1, col2 = st.columns([1, 2])
-        with col1:
-            if st.button(name, key=f"btn-{name}"):
-                proc = st.session_state.processes.get(name)
-                if proc is None or proc.poll() is not None:
-                    # Convert to absolute path
-                    abs_app_path = os.path.abspath(str(app_path))
+    col1, col2 = st.columns([1, 2])
+    with col1:
+        if st.button(name, key=f"btn-{name}"):
+            proc = st.session_state.processes.get(name)
+            if proc is None or proc.poll() is not None:
+                # Convert to absolute path
+                abs_app_path = os.path.abspath(str(app_path))
                     
-                    cmd = [
-                        python_cmd,
-                        "-m",
-                        "streamlit",
-                        "run",
-                        abs_app_path,
-                        "--server.port",
-                        str(port),
-                        "--server.headless",
-                        "true",
-                        "--server.address",
-                        "localhost",
-                    ]
-                    env = os.environ.copy()
-                    env.setdefault("PYTHONUNBUFFERED", "1")
-                    # Use the root directory as working directory
-                    work_dir = str(ROOT)
+                cmd = [
+                    python_cmd,
+                    "-m",
+                    "streamlit",
+                    "run",
+                    abs_app_path,
+                    "--server.port",
+                    str(port),
+                    "--server.headless",
+                    "true",
+                    "--server.address",
+                    "localhost",
+                ]
+                env = os.environ.copy()
+                env.setdefault("PYTHONUNBUFFERED", "1")
+                # Use the root directory as working directory
+                work_dir = str(ROOT)
                     
-                    print(cmd)
+                print(cmd)
+                st.write(cmd)
                     
-                    st.session_state.processes[name] = subprocess.Popen(
-                        cmd,
-                        cwd=work_dir,
-                        env=env,
-                        stdout=subprocess.PIPE,
-                        stderr=subprocess.PIPE,
-                        text=True
-                    )
+                st.session_state.processes[name] = subprocess.Popen(
+                    cmd,
+                    cwd=work_dir,
+                    env=env,
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.PIPE,
+                    text=True
+                )
                     
-                    # Create placeholder for status message
-                    status_msg = st.empty()
-                    status_msg.info(f"Starting {name}...")
+                # Create placeholder for status message
+                status_msg = st.empty()
+                status_msg.info(f"Starting {name}...")
 
-                    # Start checking if app is ready
-                    url = f"http://localhost:{port}"
+                # Start checking if app is ready
+                url = f"http://localhost:{port}"
                     
-                    # Check for immediate startup errors
-                    time.sleep(2)  # Give it a moment to start
-                    
-                    if st.session_state.processes[name].poll() is not None:
-                        status_msg.error(f"{name} failed to start")
-                        st.stop()  # Stop execution if the process failed
+                # Check for immediate startup errors
+                time.sleep(2)  # Give it a moment to start
+                if st.session_state.processes[name].poll() is not None:
+                    status_msg.error(f"{name} failed to start")
+                    st.stop()  # Stop execution if the process failed
                         
-                    # Wait for app to be ready
-                    ready = check_app_ready(url)
+                # Wait for app to be ready
+                ready = check_app_ready(url)
                     
-                    # Show appropriate status message
-                    if ready:
-                        status_msg.success(f"{name} is ready! Click the link to open →")
-                    else:
-                        status_msg.warning(f"{name} is taking longer than usual to start. The link will work once it's ready.")
-        with col2:
-            url = f"http://localhost:{port}"
-            st.markdown(f"[Open {name}]({url})")
+                # Show appropriate status message
+                if ready:
+                    status_msg.success(f"{name} is ready! Click the link to open →")
+                else:
+                    status_msg.warning(f"{name} is taking longer than usual to start. The link will work once it's ready.")
+    with col2:
+        url = f"http://localhost:{port}"
+        st.markdown(f"[Open {name}]({url})")
 
-    st.divider()
-    st.caption("Tip: Each project is a standalone Streamlit app inside its folder.")
+st.divider()
+st.caption("Tip: Each project is a standalone Streamlit app inside its folder.")
