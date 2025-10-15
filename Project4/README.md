@@ -13,7 +13,7 @@ streamlit run app.py --server.port 8604
 # Assignment Requirements
 ### Preprocess and Visualize the Data:
 1. Perform a descriptive statistical analysis of the data and decide how to handle missing values. (DONE)
-2. Store your data in a dataframe.
+2. Store your data in a dataframe. (DONE)
 3. Count the number of positive, negative, and neutral text items, as tagged by a score in one of the columns. (DONE)
 4. Display your findings in a plot. (DONE)
 
