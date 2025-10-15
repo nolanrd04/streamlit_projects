@@ -6,6 +6,9 @@ env/
 .env/
 *.pyc
 
+# all files
+*.csv
+
 # Specific files
 Project3/airplane
 Project3/car
@@ -18,4 +21,13 @@ AIT-204-NLP/results/
 AIT-204-NLP/*.md
 AIT-204-NLP/sentiment_model_7point/
 .git-old
-
+NER/annotation_tool.py
+NER/custom_ner_labels.py
+NER/dataset_alternatives.py
+NER/feature_extraction.py
+NER/model_evaluation.py
+NER/model_training.py
+NER/ner_pipeline.py
+NER/preprocessor.py
+NER/QUICKSTART.py
+NER/HOW_TO_RUN_APP.md
