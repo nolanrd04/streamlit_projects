@@ -5,7 +5,7 @@ datasets
 matplotlib
 numpy
 pandas
-Pillow
+Pillow>=10.0.0
 plotly
 scikit-learn
 streamlit
