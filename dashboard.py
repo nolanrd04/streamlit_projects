@@ -43,7 +43,7 @@ projects = [
     ("Project 8", "none"),
     ("Project 9", "none"),
     ("Project 10", "none"),
-    ("NER", "Named Entity Recognition"),
+    ("NER", "Named Entity Recognition (Nolan's personal)"),
 ]
 
 cols = st.columns(3)

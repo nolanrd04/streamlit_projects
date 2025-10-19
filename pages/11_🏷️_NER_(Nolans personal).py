@@ -15,7 +15,7 @@ st.set_page_config(
 )
 
 # Title
-st.title("🏷️ NER")
+st.title("🏷️ NER (Nolan's personal)")
 st.markdown("---")
 
 # Get project path
