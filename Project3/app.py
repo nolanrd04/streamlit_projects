@@ -1,13 +1,26 @@
 import streamlit as st
 from datetime import datetime
-import tensorflow as tf
 import numpy as np
 from PIL import Image
-from dataProcessor import preprocess_image, IMG_SIZE, CLASS_NAMES
-from CNN import load_data, build_model, train_and_evaluate
-import matplotlib.pyplot as plt
-from sklearn.model_selection import train_test_split
 import os
+
+# Check if we're running locally or in cloud
+IS_LOCAL = os.path.exists("vehicle_classifier_model.keras") or os.environ.get("STREAMLIT_ENV") != "cloud"
+
+# Only import TensorFlow if running locally
+if IS_LOCAL:
+    try:
+        import tensorflow as tf
+        from dataProcessor import preprocess_image, IMG_SIZE, CLASS_NAMES
+        from CNN import load_data, build_model, train_and_evaluate
+        import matplotlib.pyplot as plt
+        from sklearn.model_selection import train_test_split
+        TENSORFLOW_AVAILABLE = True
+    except ImportError:
+        TENSORFLOW_AVAILABLE = False
+        st.warning("⚠️ TensorFlow not available on the CLOUD. Running in display-only mode.")
+else:
+    TENSORFLOW_AVAILABLE = False
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 model_path = os.path.join(BASE_DIR, "vehicle_classifier_model.keras")
@@ -19,12 +32,17 @@ st.title("Convolutional Neural Network - Vehicle Classifier")
 st.markdown("The kaggle dataset strictly utilizes images of three vehicles: cars, motorbikes, and airplanes.")
 st.markdown("The CNN model is trained to classify these vehicles.")
 
-# Load the trained model
-@st.cache_resource
-def load_model():
-    return tf.keras.models.load_model(model_path)
-
-model = load_model()
+# Load the trained model only if TensorFlow is available
+model = None
+if TENSORFLOW_AVAILABLE and os.path.exists(model_path):
+    @st.cache_resource
+    def load_model():
+        return tf.keras.models.load_model(model_path)
+    
+    try:
+        model = load_model()
+    except Exception as e:
+        st.error(f"Error loading model: {e}")
 
 # Tabs
 tab1, tab2, tab3 = st.tabs(["Test Model", "Train Model", "Project Requirements"])
