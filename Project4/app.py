@@ -2,7 +2,7 @@ import streamlit as st
 from pathlib import Path
 import os
 from ner_model import HotelReviewNLPModel
-from data_preprocessor import download_nltk_resources
+# from data_preprocessor import download_nltk_resources
 
 # Download NLTK resources if not already present
 # download_nltk_resources()
