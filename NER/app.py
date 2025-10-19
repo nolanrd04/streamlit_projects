@@ -15,7 +15,6 @@ sys.path.append(str(script_dir))
 
 from custom_ner_labels import LABELS, CUSTOM_ENTITY_TYPES
 from model_training import NERModelTrainer
-from model_evaluation import NERModelEvaluator
 
 # Page configuration
 st.set_page_config(

@@ -22,11 +22,8 @@ AIT-204-NLP/*.md
 AIT-204-NLP/sentiment_model_7point/
 .git-old
 NER/annotation_tool.py
-NER/custom_ner_labels.py
 NER/dataset_alternatives.py
-NER/feature_extraction.py
 NER/model_evaluation.py
-NER/model_training.py
 NER/ner_pipeline.py
 NER/preprocessor.py
 NER/QUICKSTART.py
