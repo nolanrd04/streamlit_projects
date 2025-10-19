@@ -49,61 +49,7 @@ with tab1:
 
 # ---------------- Train Model Tab ----------------
 with tab2:
-    st.title("Train Model")
-    st.subheader("IMPORTANT:\nTraining the model is not necessary for the app to work. Our model is already trained and ready to go.")
-    # Controls
-    dataset_file = st.file_uploader("Upload dataset (.npz)", type=["npz"])
-    if dataset_file:
-        data = np.load(dataset_file)
-
-    epochs = st.number_input("Epochs", min_value=10, max_value=200, value=50, step=10)
-    batch_size = st.number_input("Batch Size", min_value=16, max_value=128, value=32, step=16)
-    val_split = st.slider("Validation Split", 0.1, 0.4, 0.2, 0.05)
-
-    if st.button("🚀 Train Model"):
-        st.write("Loading dataset...")
-        try:
-            if dataset_file:
-                X, y = data["X"], data["y"]
-                st.write("✅ Dataset loaded:", data["X"].shape, data["y"].shape)
-                X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
-            st.write("Training model...")
-            model = build_model()
-            history, (test_loss, test_acc) = train_and_evaluate(
-                model, X_train, y_train, X_test, y_test,
-                epochs=epochs, batch_size=batch_size, validation_split=val_split
-            )
-
-            st.success(f"✅ Training complete. Test Accuracy: {test_acc*100:.2f}%, Test Loss: {test_loss:.4f}")
-
-            # Plot Accuracy
-            fig_acc, ax = plt.subplots()
-            ax.plot(history.history['accuracy'], label='Train Accuracy')
-            ax.plot(history.history['val_accuracy'], label='Validation Accuracy')
-            ax.set_title("Model Accuracy")
-            ax.set_xlabel("Epoch")
-            ax.set_ylabel("Accuracy")
-            ax.legend()
-            st.pyplot(fig_acc)
-
-            # Plot Loss
-            fig_loss, ax = plt.subplots()
-            ax.plot(history.history['loss'], label='Train Loss')
-            ax.plot(history.history['val_loss'], label='Validation Loss')
-            ax.set_title("Model Loss")
-            ax.set_xlabel("Epoch")
-            ax.set_ylabel("Loss")
-            ax.legend()
-            st.pyplot(fig_loss)
-
-            # Save model
-            if st.button("💾 Save Model"):
-                model.save("vehicle_classifier_model.keras")
-                st.success("✅ Model saved successfully.")
-
-        except Exception as e:
-            st.error(f"❌ Training failed: {e}")
+    st.title("Training model disabled while deployed. Training happens on the backend.")
 
 # ---------------- Project Requirements Tab ----------------
 with tab3:
